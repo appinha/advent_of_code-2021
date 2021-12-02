@@ -28,6 +28,8 @@
 
 ---
 
+[![Day 01](https://badgen.net/badge/01/%E2%98%85%E2%98%85/yellow)](my_solutions/day01)
+
 (TODO: add final picture of AoC calendar)
 
 ## 🗣️ About
@@ -98,7 +100,7 @@ make new day=02
 
 | DAY							| PUZZLE TITLE	| PUZZLE SUMMARY
 | :-:							| :-						| :-
-| [📁 01](my_solutions/day_01)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
+| [📁 01](my_solutions/day_01)	| **Sonar Sweep**		| 📃 **Input:** the sonar sweep report - a list of measurements of the sea floor depth (a list of integers).<br />⭐ **Part One:** count the number of times a depth measurement increases from the previous measurement. <br />⭐ **Part Two:** count the number of times the sum of three-measurement windows increases from the previous sum.
 <!--
 | [📁 02](my_solutions/day_02)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 03](my_solutions/day_03)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
