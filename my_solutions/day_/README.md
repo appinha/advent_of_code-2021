@@ -9,4 +9,4 @@
 ⭐ **Part Two:** .
 
 ## Puzzle instructions
-https://adventofcode.com/2015/day/X
+https://adventofcode.com/2021/day/X

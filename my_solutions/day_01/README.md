@@ -9,4 +9,4 @@
 ⭐ **Part Two:** count the number of times the sum of three-measurement windows increases from the previous sum.
 
 ## Puzzle instructions
-https://adventofcode.com/2015/day/1
+https://adventofcode.com/2021/day/1
