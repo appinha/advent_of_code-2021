@@ -30,6 +30,7 @@
 
 [![Day 01](https://badgen.net/badge/01/%E2%98%85%E2%98%85/yellow)](my_solutions/day01)
 [![Day 02](https://badgen.net/badge/02/%E2%98%85%E2%98%85/yellow)](my_solutions/day02)
+[![Day 03](https://badgen.net/badge/03/%E2%98%85%E2%98%85/yellow)](my_solutions/day03)
 
 (TODO: add final picture of AoC calendar)
 
@@ -103,8 +104,8 @@ make new day=02
 | :-:							| :-						| :-
 | [📁 01](my_solutions/day_01)	| **Sonar Sweep**		| 📃 **Input:** the sonar sweep report - a list of measurements of the sea floor depth (a list of integers).<br />⭐ **Part One:** count the number of times a depth measurement increases from the previous measurement. <br />⭐ **Part Two:** count the number of times the sum of three-measurement windows increases from the previous sum.
 | [📁 02](my_solutions/day_02)	| **Dive!**		| 📃 **Input:** a list of commands - a tuple of a direction and an integer number.<br />⭐ **Part One:** follow the planned course (list of commands) to calculate the final horizontal position and depth; multiply them. <br />⭐ **Part Two:** same as before, but with a new interpretation  of the commands.
+| [📁 03](my_solutions/day_03)	| **Binary Diagnostic**		| 📃 **Input:** the submarine's diagnostic report - a list of binary numbers.<br />⭐ **Part One:** use the binary numbers to calculate the gamma rate and epsilon rate, then multiply them together to find the power consumption of the submarine. <br />⭐ **Part Two:** use the binary numbers to calculate the oxygen generator rating and CO2 scrubber rating, then multiply them together to find the life support rating of the submarine.
 <!--
-| [📁 03](my_solutions/day_03)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 04](my_solutions/day_04)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 05](my_solutions/day_05)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 06](my_solutions/day_06)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
