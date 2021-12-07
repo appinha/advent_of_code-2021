@@ -1,4 +1,5 @@
 import itertools
+import numpy as np
 
 def is_int(object):
     return (isinstance(object, int))
@@ -38,3 +39,6 @@ def get_unique_permutations(elements):
             reversed_permutations.add(tuple(reversed(permutation)))
             unique_permutations.append(permutation)
     return unique_permutations
+
+def get_matrix_from_string(string, type):
+    return np.asarray([row.split() for row in string.split("\n")], dtype=type)
