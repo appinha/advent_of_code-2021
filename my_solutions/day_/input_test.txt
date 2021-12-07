@@ -1,6 +1,12 @@
+INPUT
+:-> solution=0 <-:
 
+<--->
+
+INPUT
 :-> solution=0 <-:
 
 *-*-*
 
+INPUT
 :-> solution=0 <-:

@@ -58,7 +58,7 @@ class PuzzleSolver:
 
         tests_by_part = {}
         for part in input_by_part:
-            raw_tests = input_by_part[part].split("\n\n")
+            raw_tests = input_by_part[part].split("\n\n<--->\n\n")
             tests = get_tests(raw_tests)
             tests_by_part[part] = tests
         return tests_by_part
