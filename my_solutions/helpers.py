@@ -1,6 +1,21 @@
 import itertools
 import numpy as np
 
+
+class Coordinates2D():
+    def __init__(self, numbers):
+        self.x = numbers[0]
+        self.y = numbers[1]
+        self.list = [numbers[0], numbers[1]]
+        self.tuple = (numbers[0], numbers[1])
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return f"{self.x},{self.y}"
+
+
 def is_int(object):
     return (isinstance(object, int))
 
