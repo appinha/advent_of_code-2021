@@ -35,6 +35,7 @@
 [![Day 05](https://badgen.net/badge/05/%E2%98%85%E2%98%85/yellow)](my_solutions/day05)
 [![Day 06](https://badgen.net/badge/06/%E2%98%85%E2%98%85/yellow)](my_solutions/day06)
 [![Day 07](https://badgen.net/badge/07/%E2%98%85%E2%98%85/yellow)](my_solutions/day07)
+[![Day 08](https://badgen.net/badge/08/%E2%98%85%E2%98%85/yellow)](my_solutions/day08)
 
 (TODO: add final picture of AoC calendar)
 
@@ -113,8 +114,8 @@ make new day=02
 | [📁 05](my_solutions/day_05)	| **Hydrothermal Venture**		| 📃 **Input:** a list of nearby lines of vents - a list of 2D coordinate pairs.<br />⭐ **Part One:** only consider horizontal and vertical lines and find how many points at least two lines overlap. <br />⭐ **Part Two:** same as before, but including diagonals.
 | [📁 06](my_solutions/day_06)	| **Lanternfish**		| 📃 **Input:** a list of the ages of several hundred nearby lanternfish - a comma separated list of integers.<br />⭐ **Part One:** simulate lanternfish spawning to find how many lanternfish would there be after 80 days. <br />⭐ **Part Two:** same as before, but for 256 days.
 | [📁 07](my_solutions/day_07)	| **The Treachery of Whales**		| 📃 **Input:** a list of the horizontal position of each crab - a comma separated list of integers.<br />⭐ **Part One:** find the least fuel possible used to align the crabs position. <br />⭐ **Part Two:** same as before, but with a new fuel cost rate.
+| [📁 08](my_solutions/day_08)	| **Seven Segment Search**		| 📃 **Input:** a list of signal patterns and output values - a list of lowercase strings.<br />⭐ **Part One:** find how many times do digits 1, 4, 7, or 8 appear. <br />⭐ **Part Two:** decode the output values and add them all up.
 <!--
-| [📁 08](my_solutions/day_08)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 09](my_solutions/day_09)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 10](my_solutions/day_10)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 11](my_solutions/day_11)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
