@@ -36,6 +36,7 @@
 [![Day 06](https://badgen.net/badge/06/%E2%98%85%E2%98%85/yellow)](my_solutions/day06)
 [![Day 07](https://badgen.net/badge/07/%E2%98%85%E2%98%85/yellow)](my_solutions/day07)
 [![Day 08](https://badgen.net/badge/08/%E2%98%85%E2%98%85/yellow)](my_solutions/day08)
+[![Day 09](https://badgen.net/badge/09/%E2%98%85%E2%98%85/yellow)](my_solutions/day09)
 
 (TODO: add final picture of AoC calendar)
 
@@ -115,8 +116,8 @@ make new day=02
 | [📁 06](my_solutions/day_06)	| **Lanternfish**		| 📃 **Input:** a list of the ages of several hundred nearby lanternfish - a comma separated list of integers.<br />⭐ **Part One:** simulate lanternfish spawning to find how many lanternfish would there be after 80 days. <br />⭐ **Part Two:** same as before, but for 256 days.
 | [📁 07](my_solutions/day_07)	| **The Treachery of Whales**		| 📃 **Input:** a list of the horizontal position of each crab - a comma separated list of integers.<br />⭐ **Part One:** find the least fuel possible used to align the crabs position. <br />⭐ **Part Two:** same as before, but with a new fuel cost rate.
 | [📁 08](my_solutions/day_08)	| **Seven Segment Search**		| 📃 **Input:** a list of signal patterns and output values - a list of lowercase strings.<br />⭐ **Part One:** find how many times do digits 1, 4, 7, or 8 appear. <br />⭐ **Part Two:** decode the output values and add them all up.
+| [📁 09](my_solutions/day_09)	| **Smoke Basin**		| 📃 **Input:** a heightmap of the floor of the nearby caves.<br />⭐ **Part One:** find the sum of the risk levels of all low points on the heightmap. <br />⭐ **Part Two:** find the product of the sizes of the three largest basins.
 <!--
-| [📁 09](my_solutions/day_09)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 10](my_solutions/day_10)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 11](my_solutions/day_11)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 12](my_solutions/day_12)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
