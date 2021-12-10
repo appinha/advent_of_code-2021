@@ -24,7 +24,10 @@ class DayPuzzleSolver(PuzzleSolver):
     def __init__(self, input_file, delimiter):
         PuzzleSolver.__init__(self, input_file, delimiter)
 
-    def _get_input(self, raw_input):
+    def get_input(self, raw_input):
+        self.lines = self._get_lines(raw_input)
+
+    def _get_lines(self, raw_input):
         lines = []
         for string in raw_input:
             numbers = list(map(int, re.findall(r'\d+', string)))
@@ -51,7 +54,7 @@ class DayPuzzleSolver(PuzzleSolver):
         points.append((x[1], y[1]))
         return points
 
-    def count_points(self, lines, include_diagonals=False):
+    def _count_points(self, lines, include_diagonals=False):
         diagram_counts = Counter()
         for line in lines:
             if self._is_diagonal(line) and not include_diagonals:
@@ -60,13 +63,11 @@ class DayPuzzleSolver(PuzzleSolver):
                 diagram_counts[point] += 1
         return sum(1 for count in diagram_counts.values() if count > 1)
 
-    def solve_part_1(self, raw_input):
-        lines = self._get_input(raw_input)
-        return self.count_points(lines)
+    def solve_part_1(self):
+        return self._count_points(self.lines)
 
-    def solve_part_2(self, raw_input):
-        lines = self._get_input(raw_input)
-        return self.count_points(lines, include_diagonals=True)
+    def solve_part_2(self):
+        return self._count_points(self.lines, include_diagonals=True)
 
 
 if __name__ == '__main__':

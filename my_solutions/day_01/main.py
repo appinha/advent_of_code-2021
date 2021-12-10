@@ -9,8 +9,8 @@ class DayPuzzleSolver(PuzzleSolver):
     def __init__(self, input_file, delimiter):
         PuzzleSolver.__init__(self, input_file, delimiter)
 
-    def _get_input(self, raw_input):
-        return list(map(int, raw_input))
+    def get_input(self, raw_input):
+        self.numbers = list(map(int, raw_input))
 
     def _count_increases(self, numbers):
         prev = numbers[0]
@@ -21,13 +21,11 @@ class DayPuzzleSolver(PuzzleSolver):
             prev = number
         return count
 
-    def solve_part_1(self, raw_input):
-        numbers = self._get_input(raw_input)
-        return self._count_increases(numbers)
+    def solve_part_1(self):
+        return self._count_increases(self.numbers)
 
-    def solve_part_2(self, raw_input):
-        numbers = self._get_input(raw_input)
-        sums = [sum(numbers[i:i + 3]) for i in range(len(numbers) - 2)]
+    def solve_part_2(self):
+        sums = [sum(self.numbers[i:i + 3]) for i in range(len(self.numbers) - 2)]
         return self._count_increases(sums)
 
 

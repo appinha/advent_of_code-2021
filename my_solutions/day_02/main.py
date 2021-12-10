@@ -15,18 +15,20 @@ class DayPuzzleSolver(PuzzleSolver):
     def __init__(self, input_file, delimiter):
         PuzzleSolver.__init__(self, input_file, delimiter)
 
-    def _get_input(self, raw_input):
+    def get_input(self, raw_input):
+        self.commands = self._get_commands(raw_input)
+
+    def _get_commands(self, raw_input):
         commands = []
         for line in raw_input:
             direction, increase = line.split()
             commands.append(Command(direction, int(increase)))
         return commands
 
-    def solve_part_1(self, raw_input):
-        commands = self._get_input(raw_input)
+    def solve_part_1(self):
         horizontal = 0
         depth = 0
-        for command in commands:
+        for command in self.commands:
             if command.direction == 'forward':
                 horizontal += command.units
             if command.direction == 'down':
@@ -35,12 +37,11 @@ class DayPuzzleSolver(PuzzleSolver):
                 depth -= command.units
         return horizontal * depth
 
-    def solve_part_2(self, raw_input):
-        commands = self._get_input(raw_input)
+    def solve_part_2(self):
         aim = 0
         horizontal = 0
         depth = 0
-        for command in commands:
+        for command in self.commands:
             if command.direction == 'forward':
                 horizontal += command.units
                 depth += aim * command.units
