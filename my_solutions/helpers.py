@@ -72,6 +72,13 @@ def groupby(object):
         for k, v in itertools.groupby(object)
     ]
 
+def get_subsets_in_sequence(set, length):
+    '''Returns a list of subsets in sequence of given length.
+    Example:
+        get_sequenced_subsets([0, 1, 2, 3, 4, 5], 3)
+        return -> [[0, 1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]'''
+    return [set[i:i + 3] for i in range(len(set) - (length - 1))]
+
 def get_unique_permutations(elements):
     reversed_permutations = set()
     unique_permutations = []

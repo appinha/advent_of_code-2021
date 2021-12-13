@@ -1,4 +1,5 @@
 from puzzle_solver import PuzzleSolver, run_puzzle_solver
+from helpers import get_subsets_in_sequence
 from pprint import pprint
 
 
@@ -25,7 +26,7 @@ class DayPuzzleSolver(PuzzleSolver):
         return self._count_increases(self.numbers)
 
     def solve_part_2(self):
-        sums = [sum(self.numbers[i:i + 3]) for i in range(len(self.numbers) - 2)]
+        sums = [sum(subset) for subset in get_subsets_in_sequence(self.numbers, 3)]
         return self._count_increases(sums)
 
 
