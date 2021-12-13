@@ -2,6 +2,10 @@ import itertools
 import numpy as np
 
 
+ROW = 0
+COL = 1
+
+
 class Coordinates2D():
     def __init__(self, numbers):
         self.x = numbers[0]
@@ -14,6 +18,28 @@ class Coordinates2D():
 
     def __str__(self):
         return f"{self.x},{self.y}"
+
+
+class Grid():
+    def __init__(self):
+        pass
+
+    def get_from_string(string, type, split=None):
+        '''Returns a numpy matrix from a single plain string.
+        String's rows must be separated by '\n'. Callback defines row elements splitting.'''
+        if not split:
+            split = lambda row: row.split()
+        return np.asarray([split(row) for row in string.split("\n")], dtype=type)
+
+    def get_index_tuples_where(result):
+        '''Returns a list of index tuples for given results of numpy's where method.
+        Example: get_index_tuples_where(np.where(matrix > 0))'''
+        indexes = []
+        for i in range(len(result[0])):
+            row = result[ROW][i]
+            col = result[COL][i]
+            indexes.append((row, col))
+        return indexes
 
 
 def is_int(object):
@@ -54,6 +80,3 @@ def get_unique_permutations(elements):
             reversed_permutations.add(tuple(reversed(permutation)))
             unique_permutations.append(permutation)
     return unique_permutations
-
-def get_matrix_from_string(string, type):
-    return np.asarray([row.split() for row in string.split("\n")], dtype=type)

@@ -1,5 +1,5 @@
 from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import get_matrix_from_string
+from helpers import Grid
 from pprint import pprint
 import numpy as np
 
@@ -13,7 +13,7 @@ class DayPuzzleSolver(PuzzleSolver):
 
     def get_input(self, raw_input):
         self.numbers = list(map(int, raw_input[0].split(',')))
-        self.boards = [get_matrix_from_string(board, int) for board in raw_input[1:]]
+        self.boards = [Grid.get_from_string(board, int) for board in raw_input[1:]]
 
     def _mark_number_on_board(self, number, board, marked_board):
         index = np.where(board == number)
