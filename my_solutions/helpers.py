@@ -1,23 +1,37 @@
+import re
 import itertools
 import numpy as np
 
+
+X = 0
+Y = 1
 
 ROW = 0
 COL = 1
 
 
 class Coordinates2D():
-    def __init__(self, numbers):
-        self.x = numbers[0]
-        self.y = numbers[1]
-        self.list = [numbers[0], numbers[1]]
-        self.tuple = (numbers[0], numbers[1])
+    def __init__(self, data):
+        self.x, self.y = self.get_coordinates(data)
+        self.list = [self.x, self.y]
+        self.tuple = (self.x, self.y)
 
     def __repr__(self):
         return self.__str__()
 
     def __str__(self):
-        return f"{self.x},{self.y}"
+        return f"({self.x},{self.y})"
+
+    def get_coordinates(self, data):
+        if type(data) == list:
+            return data[0], data[1]
+        return Coordinates2D.get_tuple_from_string(data)
+
+    def get_tuple_from_string(string):
+        return tuple(find_all_integers(string))
+
+    def get_max_from_tuples(tuples):
+        return max(x for x, _ in tuples), max(y for _, y in tuples)
 
 
 class Grid():
@@ -83,6 +97,9 @@ def str_to_int(object):
         return int(object)
     else:
         return object
+
+def find_all_integers(string):
+    return list(map(int, re.findall(r'[0-9\-]+', string)))
 
 def invert_binary(binary_str):
     '''Returns a string with the inverse of given binary string.

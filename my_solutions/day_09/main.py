@@ -1,14 +1,11 @@
 from puzzle_solver import PuzzleSolver, run_puzzle_solver
+from helpers import X, Y
 from pprint import pprint
 from collections import defaultdict
 import numpy as np
 
 
 delimiter = "\n"
-
-
-X = 0
-Y = 1
 
 
 class DayPuzzleSolver(PuzzleSolver):

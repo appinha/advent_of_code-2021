@@ -30,8 +30,8 @@ class DayPuzzleSolver(PuzzleSolver):
     def _get_lines(self, raw_input):
         lines = []
         for string in raw_input:
-            numbers = list(map(int, re.findall(r'\d+', string)))
-            lines.append(Line(Coordinates2D(numbers[0:2]), Coordinates2D(numbers[2:])))
+            strings = string.split(" -> ")
+            lines.append(Line(Coordinates2D(strings[0]), Coordinates2D(strings[1])))
         return lines
 
     def _is_diagonal(self, line):
