@@ -21,8 +21,17 @@ class Coordinates2D():
 
 
 class Grid():
-    def __init__(self):
-        pass
+    '''Examples of usefull numpy methods:
+        np.where(condition) -> returns indexes where condition is met
+        np.where(np_matrix == number) -> [[i1_row, i2_row], [i1_col, i2_col]]
+
+        np.any(condition) -> returns boolean if any element meets condition
+        np.all(condition) -> returns boolean if all elements meet condition
+        np.all(np_matrix > number) -> False
+        np.all(np_matrix > number, axis=Grid.row_axis) -> [ True False False False False]
+    '''
+    col_axis = 0
+    row_axis = 1
 
     def get_from_string(string, type, split=None):
         '''Returns a numpy matrix from a single plain string.
@@ -30,6 +39,11 @@ class Grid():
         if not split:
             split = lambda row: row.split()
         return np.asarray([split(row) for row in string.split("\n")], dtype=type)
+
+    def create_filled_with(shape, value):
+        '''Returns a matrix of given shape filled with given value.
+        Example: create_filled_with((10, 10), 0)'''
+        return np.full(shape, value)
 
     def get_index_tuples_where(result):
         '''Returns a list of index tuples for given results of numpy's where method.
@@ -40,6 +54,10 @@ class Grid():
             col = result[COL][i]
             indexes.append((row, col))
         return indexes
+
+    def sum(matrix):
+        '''Returns the sum of all matrix elements.'''
+        return np.sum(matrix)
 
 
 def is_int(object):

@@ -21,12 +21,12 @@ class DayPuzzleSolver(PuzzleSolver):
         board[board == number] = -1
 
     def _board_has_full_array(self, board):
-        full_rows = np.all(board >= 0, axis=1)
-        full_columns = np.all(board >= 0, axis=0)
+        full_rows = np.all(board >= 0, axis=Grid.row_axis)
+        full_columns = np.all(board >= 0, axis=Grid.col_axis)
         return any(full_rows) or any(full_columns)
 
     def _play_bingo(self, numbers, boards, get_all=False):
-        marked_boards = [np.full(boards[0].shape, -1) for _ in range(len(boards))]
+        marked_boards = [Grid.create_filled_with(boards[0].shape, -1) for _ in range(len(boards))]
         winning_board_indexes = []
         all_winning = []
         for number in numbers:
@@ -50,7 +50,7 @@ class DayPuzzleSolver(PuzzleSolver):
 
     def _sum_unmarked_numbers(self, board):
         board[board == -1] = 0
-        return np.sum(board)
+        return Grid.sum(board)
 
     def solve_part_1(self):
         winning_number, unmarked_winning_board = self._play_bingo(self.numbers, self.boards)
