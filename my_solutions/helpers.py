@@ -66,6 +66,12 @@ def str_to_int(object):
     else:
         return object
 
+def invert_binary(binary_str):
+    '''Returns a string with the inverse of given binary string.
+    Example: invert_binary("101011") -> 010100'''
+    inverse_int = int(binary_str, 2) ^ (2 ** (len(binary_str) + 1) - 1)
+    return bin(inverse_int)[3:]
+
 def groupby(object):
     return [
         {"element": k, "occurrences": list(v)}

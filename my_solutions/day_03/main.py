@@ -1,4 +1,5 @@
 from puzzle_solver import PuzzleSolver, run_puzzle_solver
+from helpers import invert_binary
 from pprint import pprint
 from collections import defaultdict, Counter
 
@@ -29,13 +30,9 @@ class DayPuzzleSolver(PuzzleSolver):
             gamma += '0' if count_by_bit['0'] > count_by_bit['1'] else '1'
         return gamma
 
-    def _invert_binary(self, binary_str):
-        inverse_str = int(binary_str, 2) ^ (2 ** (len(binary_str) + 1) - 1)
-        return bin(inverse_str)[3:]
-
     def _get_gamma_and_epsilon(self, raw_input):
         gamma = self._get_gamma(raw_input)
-        epsilon = self._invert_binary(gamma)
+        epsilon = invert_binary(gamma)
         return gamma, epsilon
 
     def _get_rating(self, binaries, gas):
