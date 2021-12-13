@@ -39,6 +39,7 @@
 [![Day 09](https://badgen.net/badge/09/%E2%98%85%E2%98%85/yellow)](my_solutions/day09)
 [![Day 10](https://badgen.net/badge/10/%E2%98%85%E2%98%85/yellow)](my_solutions/day10)
 [![Day 11](https://badgen.net/badge/11/%E2%98%85%E2%98%85/yellow)](my_solutions/day11)
+[![Day 12](https://badgen.net/badge/12/%E2%98%85%E2%98%85/yellow)](my_solutions/day12)
 
 (TODO: add final picture of AoC calendar)
 
@@ -121,8 +122,8 @@ make new day=02
 | [📁 09](my_solutions/day_09)	| **Smoke Basin**		| 📃 **Input:** a heightmap of the floor of the nearby caves.<br />⭐ **Part One:** find the sum of the risk levels of all low points on the heightmap. <br />⭐ **Part Two:** find the product of the sizes of the three largest basins.
 | [📁 10](my_solutions/day_10)	| **Syntax Scoring**		| 📃 **Input:** the navigation subsystem - a list of brackets and parenthesis.<br />⭐ **Part One:** find the total syntax error score of the navigation subsystem. <br />⭐ **Part Two:** find the middle score of the incomplete lines in the navigation subsystem.
 | [📁 11](my_solutions/day_11)	| **Dumbo Octopus**		| 📃 **Input:** a grid of octopus' energy levels - a grid of single digit integers.<br />⭐ **Part One:** find the total flashes after simulating 100 steps. <br />⭐ **Part Two:** find the first step during which all octopuses flash.
+| [📁 12](my_solutions/day_12)	| **Passage Pathing**		| 📃 **Input:** a map of the remaining caves - a list of connections between pairs of caves.<br />⭐ **Part One:** find how many paths through this cave system are there that visit small caves at most once. <br />⭐ **Part Two:** same as before, but now allowing to visit a single small cave twice.
 <!--
-| [📁 12](my_solutions/day_12)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 13](my_solutions/day_13)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 14](my_solutions/day_14)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 15](my_solutions/day_15)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
