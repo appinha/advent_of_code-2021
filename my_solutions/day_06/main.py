@@ -15,19 +15,16 @@ class DayPuzzleSolver(PuzzleSolver):
         self.timers = list(map(int, raw_input))
 
     def _spawn_for(self, timers, days):
-        day = 0
-        while day < days:
+        for _ in range(days):
             new_timers = []
             for timer in timers:
                 new_timers += [6, 8] if timer == 0 else [timer - 1]
             timers = new_timers
-            day += 1
-        return new_timers
+        return len(new_timers)
 
     def _opt_spawn_for(self, timers, days):
         count_by_timer = Counter(timers)
-        day = 0
-        while day < days:
+        for _ in range(days):
             new_count_by_timer = Counter()
             for timer in count_by_timer:
                 if timer == 0:
@@ -36,16 +33,13 @@ class DayPuzzleSolver(PuzzleSolver):
                 else:
                     new_count_by_timer[timer - 1] += count_by_timer[timer]
             count_by_timer = new_count_by_timer
-            day += 1
-        return new_count_by_timer
+        return sum(new_count_by_timer.values())
 
     def solve_part_1(self):
-        total_timers = self._spawn_for(self.timers, 80)
-        return len(total_timers)
+        return self._spawn_for(self.timers, 80)
 
     def solve_part_2(self):
-        count_by_timer = self._opt_spawn_for(self.timers, 256)
-        return sum(count_by_timer.values())
+        return self._opt_spawn_for(self.timers, 256)
 
 
 if __name__ == '__main__':
