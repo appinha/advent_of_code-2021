@@ -15,13 +15,11 @@ class DayPuzzleSolver(PuzzleSolver):
 
     def _get_total_fuel_cost(self, target, positions, new_rate=False):
 
-        def calculate_cost(target, position, new_rate=False):
+        def calculate_cost(position):
             diff = abs(target - position)
-            if new_rate:
-                return (diff * (diff + 1)) // 2
-            return diff
+            return (diff * (diff + 1)) // 2 if new_rate else diff
 
-        return sum(calculate_cost(target, position, new_rate) for position in positions)
+        return sum(calculate_cost(position) for position in positions)
 
     def _get_min_fuel_cost(self, new_rate=False):
         total_fuel_costs = [
