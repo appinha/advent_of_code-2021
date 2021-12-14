@@ -34,6 +34,43 @@ class Coordinates2D():
         return max(x for x, _ in tuples), max(y for _, y in tuples)
 
 
+class Line():
+    def __init__(self, string, spacer=None):
+        self.start, self.end = self.get_coordinates(string, spacer)
+        self.min_x, self.max_x = sorted([self.start.x, self.end.x])
+        self.min_y, self.max_y = sorted([self.start.y, self.end.y])
+
+    def get_coordinates(self, string, spacer):
+        if spacer:
+            string = string.replace(spacer, " ")
+        numbers = find_all_integers(string)
+        return Coordinates2D(numbers[0:2]), Coordinates2D(numbers[2:])
+
+    def is_horizontal(self):
+        return self.start.x != self.end.x and self.start.y == self.end.y
+
+    def is_vertical(self):
+        return self.start.x == self.end.x and self.start.y != self.end.y
+
+    def is_diagonal(self):
+        return self.start.x != self.end.x and self.start.y != self.end.y
+
+    def get_points(self):
+        if self.is_horizontal():
+            return [(x, self.start.y) for x in range(self.min_x, self.max_x + 1)]
+        if self.is_vertical():
+            return [(self.start.x, y) for y in range(self.min_y, self.max_y + 1)]
+        if self.is_diagonal():
+            (x1, y1), (x2, y2) = sorted([self.start.tuple, self.end.tuple])
+            return ((x1 + x, y1 + x) for x in range((x2 + 1) - x1))
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return f"Line: {self.start} -> {self.end}"
+
+
 class Grid():
     '''Examples of usefull numpy methods:
         np.where(condition) -> returns indexes where condition is met
@@ -100,6 +137,9 @@ def str_to_int(object):
 
 def find_all_integers(string):
     return list(map(int, re.findall(r'[0-9\-]+', string)))
+
+def find_all_positive_integers(string):
+    return list(map(int, re.findall(r'\d+', string)))
 
 def invert_binary(binary_str):
     '''Returns a string with the inverse of given binary string.
