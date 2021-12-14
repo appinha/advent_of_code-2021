@@ -1,4 +1,5 @@
 from puzzle_solver import PuzzleSolver, run_puzzle_solver
+from helpers import flatten_list
 from pprint import pprint
 import re
 from collections import defaultdict
@@ -33,10 +34,7 @@ class DayPuzzleSolver(PuzzleSolver):
         return re.findall(r'[a-z]+', raw_input_line)
 
     def _get_outputs(self, raw_input):
-        outputs = []
-        for line in raw_input:
-            outputs += self._get_strings(line)[-4:]
-        return outputs
+        return flatten_list([self._get_strings(line)[-4:] for line in raw_input])
 
     def _get_entries(self, raw_input):
         return [self._get_strings(line) for line in raw_input]

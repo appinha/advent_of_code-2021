@@ -135,6 +135,9 @@ def str_to_int(object):
     else:
         return object
 
+def flatten_list(list2D):
+    return list(itertools.chain(*list2D))
+
 def find_all_integers(string):
     return list(map(int, re.findall(r'[0-9\-]+', string)))
 
