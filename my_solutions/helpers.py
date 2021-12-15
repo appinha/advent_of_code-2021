@@ -135,6 +135,9 @@ def str_to_int(object):
     else:
         return object
 
+def lst_to_str(object):
+    return ''.join(object)
+
 def flatten_list(list2D):
     return list(itertools.chain(*list2D))
 
@@ -161,7 +164,7 @@ def get_subsets_in_sequence(set, length):
     Example:
         get_sequenced_subsets([0, 1, 2, 3, 4, 5], 3)
         return -> [[0, 1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]'''
-    return [set[i:i + 3] for i in range(len(set) - (length - 1))]
+    return [set[i:i + length] for i in range(len(set) - (length - 1))]
 
 def get_unique_permutations(elements):
     reversed_permutations = set()
