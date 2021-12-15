@@ -1,5 +1,5 @@
 from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import invert_binary
+from helpers import invert_binary, lst_to_str
 from pprint import pprint
 from collections import defaultdict, Counter
 
@@ -25,10 +25,10 @@ class DayPuzzleSolver(PuzzleSolver):
 
     def _get_gamma(self, raw_input):
         count_by_bit_by_position = self._get_bit_counts(raw_input)
-        gamma = ''
-        for count_by_bit in count_by_bit_by_position.values():
-            gamma += '0' if count_by_bit['0'] > count_by_bit['1'] else '1'
-        return gamma
+        return lst_to_str([
+            '01'[count_by_bit['0'] > count_by_bit['1']]
+            for count_by_bit in count_by_bit_by_position.values()
+        ])
 
     def _get_gamma_and_epsilon(self, raw_input):
         gamma = self._get_gamma(raw_input)
