@@ -41,6 +41,7 @@
 [![Day 11](https://badgen.net/badge/11/%E2%98%85%E2%98%85/yellow)](my_solutions/day11)
 [![Day 12](https://badgen.net/badge/12/%E2%98%85%E2%98%85/yellow)](my_solutions/day12)
 [![Day 13](https://badgen.net/badge/13/%E2%98%85%E2%98%85/yellow)](my_solutions/day13)
+[![Day 14](https://badgen.net/badge/14/%E2%98%85%E2%98%85/yellow)](my_solutions/day14)
 
 (TODO: add final picture of AoC calendar)
 
@@ -125,8 +126,8 @@ make new day=02
 | [📁 11](my_solutions/day_11)	| **Dumbo Octopus**		| 📃 **Input:** a grid of octopus' energy levels - a grid of single digit integers.<br />⭐ **Part One:** find the total flashes after simulating 100 steps. <br />⭐ **Part Two:** find the first step during which all octopuses flash.
 | [📁 12](my_solutions/day_12)	| **Passage Pathing**		| 📃 **Input:** a map of the remaining caves - a list of connections between pairs of caves.<br />⭐ **Part One:** find how many paths through this cave system are there that visit small caves at most once. <br />⭐ **Part Two:** same as before, but now allowing to visit a single small cave twice.
 | [📁 13](my_solutions/day_13)	| **Transparent Origami**		| 📃 **Input:** a list of coordinates of the dots marked in the transparent paper and a list of folding instructions.<br />⭐ **Part One:** find how many dots are visible after completing just the first fold instruction on the transparent paper. <br />⭐ **Part Two:** finish folding the transparent paper according to the instructions to find the eight capital letters code to activate the infrared thermal imaging camera system.
+| [📁 14](my_solutions/day_14)	| **Extended Polymerization**		| 📃 **Input:** a polymer template and a list of pair insertion rules.<br />⭐ **Part One:** apply 10 steps of pair insertion to the polymer template and find the difference between counts of the most and least common elements in the result. <br />⭐ **Part Two:** same as before, but for 40 steps.
 <!--
-| [📁 14](my_solutions/day_14)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 15](my_solutions/day_15)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 16](my_solutions/day_16)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
 | [📁 17](my_solutions/day_17)	| **Title**		| 📃 **Input:** .<br />⭐ **Part One:** . <br />⭐ **Part Two:** .
