@@ -8,7 +8,7 @@ delimiter = "\n"
 class Command():
     def __init__(self, direction, units):
         self.direction = direction
-        self.units = units
+        self.units = int(units)
 
 
 class DayPuzzleSolver(PuzzleSolver):
@@ -16,14 +16,7 @@ class DayPuzzleSolver(PuzzleSolver):
         PuzzleSolver.__init__(self, input_file, delimiter)
 
     def get_input(self, raw_input):
-        self.commands = self._get_commands(raw_input)
-
-    def _get_commands(self, raw_input):
-        commands = []
-        for line in raw_input:
-            direction, increase = line.split()
-            commands.append(Command(direction, int(increase)))
-        return commands
+        self.commands = [Command(*line.split()) for line in raw_input]
 
     def solve_part_1(self):
         horizontal = 0
@@ -31,9 +24,9 @@ class DayPuzzleSolver(PuzzleSolver):
         for command in self.commands:
             if command.direction == 'forward':
                 horizontal += command.units
-            if command.direction == 'down':
+            elif command.direction == 'down':
                 depth += command.units
-            if command.direction == 'up':
+            elif command.direction == 'up':
                 depth -= command.units
         return horizontal * depth
 
@@ -45,9 +38,9 @@ class DayPuzzleSolver(PuzzleSolver):
             if command.direction == 'forward':
                 horizontal += command.units
                 depth += aim * command.units
-            if command.direction == 'down':
+            elif command.direction == 'down':
                 aim += command.units
-            if command.direction == 'up':
+            elif command.direction == 'up':
                 aim -= command.units
         return horizontal * depth
 
