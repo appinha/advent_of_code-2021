@@ -14,12 +14,10 @@ class DayPuzzleSolver(PuzzleSolver):
         self.numbers = list(map(int, raw_input))
 
     def _count_increases(self, numbers):
-        prev = numbers[0]
         count = 0
-        for number in numbers[1:]:
-            if number > prev:
+        for i in range(len(numbers) - 1):
+            if numbers[i + 1] > numbers[i]:
                 count += 1
-            prev = number
         return count
 
     def solve_part_1(self):
