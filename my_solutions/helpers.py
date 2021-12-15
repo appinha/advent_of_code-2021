@@ -150,8 +150,7 @@ def find_all_positive_integers(string):
 def invert_binary(binary_str):
     '''Returns a string with the inverse of given binary string.
     Example: invert_binary("101011") -> 010100'''
-    inverse_int = int(binary_str, 2) ^ (2 ** (len(binary_str) + 1) - 1)
-    return bin(inverse_int)[3:]
+    return lst_to_str(["1" if bit == "0" else "0" for bit in binary_str])
 
 def groupby(object):
     return [
