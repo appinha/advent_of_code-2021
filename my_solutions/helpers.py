@@ -1,13 +1,27 @@
 import re
+import collections
 import itertools
 import numpy as np
 
 
 X = 0
 Y = 1
+Z = 2
 
 ROW = 0
 COL = 1
+
+
+class BaseClass():
+    def __init__(self, attr1, attr2):
+        self.attr1 = attr1
+        self.attr2 = attr2
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return f"{self.attr1},{self.attr2}"
 
 
 class Coordinates2D():
@@ -91,6 +105,21 @@ class Grid():
             split = lambda row: row.split()
         return np.asarray([split(row) for row in string.split("\n")], dtype=type)
 
+    def get_hashmap_from_string(string, type, split=None):
+        '''Returns a hashmap from a single plain string.
+        String's rows must be separated by '\n'. Callback defines row elements splitting.'''
+        if not split:
+            split = lambda row: row.split()
+
+        hashmap = collections.defaultdict(type)
+        for y, line in enumerate(string.split("\n")):
+            for x, value in enumerate(split(line)):
+                hashmap[(x, y)] = type(value)
+        return hashmap
+
+    def get_hashmap_shape(hashmap):
+        return sum_tuple_values(max(hashmap.keys()), (1, 1))
+
     def create_filled_with(shape, value):
         '''Returns a matrix of given shape filled with given value.
         Example: create_filled_with((10, 10), 0)'''
@@ -105,6 +134,9 @@ class Grid():
             col = result[COL][i]
             indexes.append((row, col))
         return indexes
+
+    def has_position(pos, shape):
+        return (0 <= pos[ROW] < shape[ROW]) and (0 <= pos[COL] < shape[COL])
 
     def sum(matrix):
         '''Returns the sum of all matrix elements.'''
@@ -141,11 +173,20 @@ def lst_to_str(object):
 def flatten_list(list2D):
     return list(itertools.chain(*list2D))
 
+def sum_tuple_values(a, b):
+    return tuple(map(sum, zip(a, b)))
+
 def find_all_integers(string):
     return list(map(int, re.findall(r'[0-9\-]+', string)))
 
 def find_all_positive_integers(string):
     return list(map(int, re.findall(r'\d+', string)))
+
+def get_key_with_min_value(dictionary):
+    return min(dictionary, key=dictionary.get)
+
+def get_key_with_max_value(dictionary):
+    return max(dictionary, key=dictionary.get)
 
 def invert_binary(binary_str):
     '''Returns a string with the inverse of given binary string.
@@ -173,3 +214,6 @@ def get_unique_permutations(elements):
             reversed_permutations.add(tuple(reversed(permutation)))
             unique_permutations.append(permutation)
     return unique_permutations
+
+def get_permutations_wo_repetitions(elements):
+    return list(set(itertools.permutations(elements)))
