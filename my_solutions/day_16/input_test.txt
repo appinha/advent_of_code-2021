@@ -6,7 +6,7 @@ D2FE28
 D2FE28
 :-> solution=0 <-:
 
-*-*-*
+<===>
 
 INPUT
 :-> solution=0 <-:

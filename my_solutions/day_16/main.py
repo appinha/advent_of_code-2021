@@ -1,9 +1,21 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
 from collections import namedtuple
 
 
-delimiter = ""
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = ""
+
+    def solve_part_1(self, raw_input):
+        bits = hexa_to_bits(raw_input)
+        packet = get_packet(iter(bits))
+        return
+
+    def solve_part_2(self, raw_input):
+        return
 
 
 Packet = namedtuple('Packet', ['version', 'type_ID', 'content'])
@@ -37,22 +49,3 @@ def get_packet(bits):
     type_ID = int(read(bits, 3), 2)
     content = parse_literal(bits) if type_ID == 4 else parse_operator(bits)
     return Packet(version=version, type_ID=type_ID, content=content)
-
-
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
-
-    def get_input(self, raw_input):
-        self.bits = hexa_to_bits(raw_input)
-
-    def solve_part_1(self):
-        packet = get_packet(iter(self.bits))
-        return
-
-    def solve_part_2(self):
-        return
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
