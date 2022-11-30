@@ -1,17 +1,21 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
 from collections import defaultdict
 
 
-delimiter = "\n"
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = "\n"
 
+    def solve_part_1(self, raw_input):
+        neighbors_by_cave = self._get_map_neighbors_by_cave(raw_input)
+        return self._count_paths(neighbors_by_cave, "start", [])
 
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
-
-    def get_input(self, raw_input):
-        self.neighbors_by_cave = self._get_map_neighbors_by_cave(raw_input)
+    def solve_part_2(self, raw_input):
+        neighbors_by_cave = self._get_map_neighbors_by_cave(raw_input)
+        return self._count_paths(neighbors_by_cave, "start", [], can_visit_small_cave_twice=True)
 
     def _get_map_neighbors_by_cave(self, raw_input):
         neighbors_by_cave = defaultdict(set)
@@ -29,7 +33,13 @@ class DayPuzzleSolver(PuzzleSolver):
             return True
         return False
 
-    def _count_paths(self, current_cave, visited_small_caves, can_visit_small_cave_twice=False):
+    def _count_paths(
+        self,
+        neighbors_by_cave,
+        current_cave,
+        visited_small_caves,
+        can_visit_small_cave_twice=False
+    ):
         if current_cave == "end":
             return 1
         if current_cave in visited_small_caves:
@@ -41,16 +51,6 @@ class DayPuzzleSolver(PuzzleSolver):
         if self._is_small_cave(current_cave):
             visited_small_caves = visited_small_caves + [current_cave]
         return sum(
-            self._count_paths(neighbor, visited_small_caves, can_visit_small_cave_twice)
-            for neighbor in self.neighbors_by_cave[current_cave]
+            self._count_paths(neighbors_by_cave, neighbor, visited_small_caves, can_visit_small_cave_twice)
+            for neighbor in neighbors_by_cave[current_cave]
         )
-
-    def solve_part_1(self):
-        return self._count_paths("start", [])
-
-    def solve_part_2(self):
-        return self._count_paths("start", [], can_visit_small_cave_twice=True)
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)

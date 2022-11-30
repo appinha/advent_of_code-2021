@@ -43,7 +43,7 @@ pj-fs
 start-RW
 :-> solution=226 <-:
 
-*-*-*
+<===>
 
 start-A
 start-b
