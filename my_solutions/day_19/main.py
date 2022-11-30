@@ -1,21 +1,27 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import X, Y, Z, find_all_integers
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
+from helpers import X, Y, Z, find_all_integers
 from collections import namedtuple
 import itertools
 import numpy as np
 
 
-delimiter = "\n\n"
-
-
-Orientation = namedtuple('Orientation', ['coords', 'signs'])
-
-
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = "\n\n"
         self.orientations = self._get_orientations()
+
+    def solve_part_1(self, raw_input):
+        scanners_readings = self._get_scanners_readings(raw_input)
+        _, beacons_coords = self._find_coords(scanners_readings)
+        return len(beacons_coords)
+
+    def solve_part_2(self, raw_input):
+        scanners_readings = self._get_scanners_readings(raw_input)
+        scanners_coords, _ = self._find_coords(scanners_readings)
+        return max(self._get_manhattan_distances_between_scanners(scanners_coords))
 
     def _get_orientations(self):
         orientations = []
@@ -26,9 +32,6 @@ class DayPuzzleSolver(PuzzleSolver):
                     orientations.append(
                         Orientation((coords[0], coords[1], coords[2]), (sign1, sign2, sign3)))
         return orientations
-
-    def get_input(self, raw_input):
-        self.scanners_readings = self._get_scanners_readings(raw_input)
 
     def _get_scanners_readings(self, raw_input):
         scanners_readings = []
@@ -81,7 +84,7 @@ class DayPuzzleSolver(PuzzleSolver):
 
     def _find_coords(self, scanners_readings):
         known_scanners_coords = [(0, 0, 0)]
-        known_beacons_coords = set(self.scanners_readings[0])
+        known_beacons_coords = set(scanners_readings[0])
 
         scanners_readings = scanners_readings[1:]
         while scanners_readings:
@@ -105,14 +108,5 @@ class DayPuzzleSolver(PuzzleSolver):
             manhattan_distances.append(get_manhattan_distance(*scanner_pair_coords))
         return manhattan_distances
 
-    def solve_part_1(self):
-        _, beacons_coords = self._find_coords(self.scanners_readings)
-        return len(beacons_coords)
 
-    def solve_part_2(self):
-        scanners_coords, _ = self._find_coords(self.scanners_readings)
-        return max(self._get_manhattan_distances_between_scanners(scanners_coords))
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
+Orientation = namedtuple('Orientation', ['coords', 'signs'])
