@@ -1,0 +1,6 @@
+[submodule "my_solutions/aoc_framework"]
+	path = my_solutions/aoc_framework
+	url = git@github.com:appinha/aoc_framework.git
+[submodule "my_solutions/aoc_lib"]
+	path = my_solutions/aoc_lib
+	url = git@github.com:appinha/aoc_lib.git
