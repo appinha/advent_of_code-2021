@@ -1,18 +1,27 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import X, Y, Grid, sum_tuple_values, get_key_with_min_value
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
+from helpers import X, Y, Grid, sum_tuple_values, get_key_with_min_value
 import heapq
 
-delimiter = ""
 
-
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = ""
         self.rel_neighbours = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
-    def get_input(self, raw_input):
-        self.risk_map = Grid.get_hashmap_from_string(raw_input, int, lambda row: list(row))
+    def solve_part_1(self, raw_input):
+        risk_map = self._get_input(raw_input)
+        return self._find_lowest_total_risk(risk_map)
+
+    def solve_part_2(self, raw_input):
+        risk_map = self._get_input(raw_input)
+        full_risk_map = self._get_full_map(risk_map, 5)
+        return self._opt_find_lowest_total_risk(full_risk_map)
+
+    def _get_input(self, raw_input):
+        return Grid.get_hashmap_from_string(raw_input, int, lambda row: list(row))
 
     def _get_neighbours(self, coord, shape):
         neighbours = [sum_tuple_values(coord, rel_n) for rel_n in self.rel_neighbours]
@@ -67,7 +76,6 @@ class DayPuzzleSolver(PuzzleSolver):
         destiny = max(risk_map)
         return risk_by_coord[destiny]
 
-
     def _get_full_map(self, tile_map, qty):
         shape = Grid.get_hashmap_shape(tile_map)
 
@@ -87,14 +95,3 @@ class DayPuzzleSolver(PuzzleSolver):
                     continue
                 full_map[(x, y)] = get_new_value((x, y), full_map)
         return full_map
-
-    def solve_part_1(self):
-        return self._find_lowest_total_risk(self.risk_map)
-
-    def solve_part_2(self):
-        full_risk_map = self._get_full_map(self.risk_map, 5)
-        return self._opt_find_lowest_total_risk(full_risk_map)
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
