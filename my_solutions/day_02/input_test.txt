@@ -6,7 +6,7 @@ down 8
 forward 2
 :-> solution=150 <-:
 
-*-*-*
+<===>
 
 forward 5
 down 5
