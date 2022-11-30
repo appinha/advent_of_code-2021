@@ -1,17 +1,16 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import get_subsets_in_sequence
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
 
+from helpers import get_subsets_in_sequence
 
-delimiter = "\n"
 
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = "\n"
 
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
-
-    def get_input(self, raw_input):
-        self.numbers = list(map(int, raw_input))
+    def _get_numbers(self, raw_input):
+        return list(map(int, raw_input))
 
     def _count_increases(self, numbers):
         count = 0
@@ -20,13 +19,11 @@ class DayPuzzleSolver(PuzzleSolver):
                 count += 1
         return count
 
-    def solve_part_1(self):
-        return self._count_increases(self.numbers)
+    def solve_part_1(self, raw_input):
+        numbers = self._get_numbers(raw_input)
+        return self._count_increases(numbers)
 
-    def solve_part_2(self):
-        sums = [sum(subset) for subset in get_subsets_in_sequence(self.numbers, 3)]
+    def solve_part_2(self, raw_input):
+        numbers = self._get_numbers(raw_input)
+        sums = [sum(subset) for subset in get_subsets_in_sequence(numbers, 3)]
         return self._count_increases(sums)
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
