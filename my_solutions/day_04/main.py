@@ -1,19 +1,30 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import Grid
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
+from helpers import Grid
 import numpy as np
 
 
-delimiter = "\n\n"
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = "\n\n"
 
+    def solve_part_1(self, raw_input):
+        numbers, boards = self._get_input(raw_input)
+        winning_number, unmarked_winning_board = self._play_bingo(numbers, boards)
+        return winning_number * self._sum_unmarked_numbers(unmarked_winning_board)
 
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
+    def solve_part_2(self, raw_input):
+        numbers, boards = self._get_input(raw_input)
+        all_winning = self._play_bingo(numbers, boards, get_all=True)
+        winning_number, unmarked_winning_board = all_winning[-1]
+        return winning_number * self._sum_unmarked_numbers(unmarked_winning_board)
 
-    def get_input(self, raw_input):
-        self.numbers = list(map(int, raw_input[0].split(',')))
-        self.boards = [Grid.get_from_string(board, int) for board in raw_input[1:]]
+    def _get_input(self, raw_input):
+        numbers = list(map(int, raw_input[0].split(',')))
+        boards = [Grid.get_from_string(board, int) for board in raw_input[1:]]
+        return numbers, boards
 
     def _mark_number_on_board(self, number, board, marked_board):
         index = np.where(board == number)
@@ -51,16 +62,3 @@ class DayPuzzleSolver(PuzzleSolver):
     def _sum_unmarked_numbers(self, board):
         board[board == -1] = 0
         return Grid.sum(board)
-
-    def solve_part_1(self):
-        winning_number, unmarked_winning_board = self._play_bingo(self.numbers, self.boards)
-        return winning_number * self._sum_unmarked_numbers(unmarked_winning_board)
-
-    def solve_part_2(self):
-        all_winning = self._play_bingo(self.numbers, self.boards, get_all=True)
-        winning_number, unmarked_winning_board = all_winning[-1]
-        return winning_number * self._sum_unmarked_numbers(unmarked_winning_board)
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
