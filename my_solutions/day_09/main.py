@@ -1,16 +1,15 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import X, Y
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
+from helpers import X, Y
 from collections import defaultdict
 import numpy as np
 
 
-delimiter = "\n"
-
-
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = "\n"
         self.relative_adjs = [
             (x, y)
             for x in range(-1, 2)
@@ -18,7 +17,16 @@ class DayPuzzleSolver(PuzzleSolver):
             if not (x == 0 and y == 0) and abs(x) != abs(y)
         ]
 
-    def get_input(self, raw_input):
+    def solve_part_1(self, raw_input):
+        self._get_input(raw_input)
+        return self._find_risk_level()
+
+    def solve_part_2(self, raw_input):
+        self._get_input(raw_input)
+        basin_sizes = sorted(self._get_basin_sizes())
+        return np.prod(basin_sizes[-3:])
+
+    def _get_input(self, raw_input):
         self.map_size = (len(raw_input[0]), len(raw_input))
         self.height_by_position = self._get_height_by_position(raw_input)
 
@@ -73,14 +81,3 @@ class DayPuzzleSolver(PuzzleSolver):
             return len(basin_points)
 
         return [get_basin_size(low_point) for low_point in get_low_points()]
-
-    def solve_part_1(self):
-        return self._find_risk_level()
-
-    def solve_part_2(self):
-        basin_sizes = sorted(self._get_basin_sizes())
-        return np.prod(basin_sizes[-3:])
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
