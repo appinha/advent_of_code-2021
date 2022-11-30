@@ -1,18 +1,25 @@
-from types import new_class
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
+
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
 from collections import Counter
 
 
-delimiter = ","
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = ","
 
+    def solve_part_1(self, raw_input):
+        timers = self._get_input(raw_input)
+        return self._spawn_for(timers, 80)
 
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
+    def solve_part_2(self, raw_input):
+        timers = self._get_input(raw_input)
+        return self._opt_spawn_for(timers, 256)
 
-    def get_input(self, raw_input):
-        self.timers = list(map(int, raw_input))
+    def _get_input(self, raw_input):
+        return list(map(int, raw_input))
 
     def _spawn_for(self, timers, days):
         for _ in range(days):
@@ -34,13 +41,3 @@ class DayPuzzleSolver(PuzzleSolver):
                     new_count_by_timer[timer - 1] += count_by_timer[timer]
             count_by_timer = new_count_by_timer
         return sum(new_count_by_timer.values())
-
-    def solve_part_1(self):
-        return self._spawn_for(self.timers, 80)
-
-    def solve_part_2(self):
-        return self._opt_spawn_for(self.timers, 256)
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
