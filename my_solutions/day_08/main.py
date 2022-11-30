@@ -1,16 +1,15 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import flatten_list
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
+from helpers import flatten_list
 import re
 from collections import defaultdict
 
 
-delimiter = "\n"
-
-
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = "\n"
         self.digit_by_string = {
             'abcefg':  '0',
             'cf':      '1',
@@ -26,9 +25,13 @@ class DayPuzzleSolver(PuzzleSolver):
         self.all_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
         self.all_letters_set = set(self.all_letters)
 
-    def get_input(self, raw_input):
-        self.outputs = self._get_outputs(raw_input)
-        self.entries = self._get_entries(raw_input)
+    def solve_part_1(self, raw_input):
+        outputs = self._get_outputs(raw_input)
+        return sum(1 for string in outputs if len(string) in [2, 3, 4, 7])
+
+    def solve_part_2(self, raw_input):
+        entries = self._get_entries(raw_input)
+        return sum(self._get_output_value(entry) for entry in entries)
 
     def _get_strings(self, raw_input_line):
         return re.findall(r'[a-z]+', raw_input_line)
@@ -78,13 +81,3 @@ class DayPuzzleSolver(PuzzleSolver):
         letter_by_code = {code: self.all_letters[i] for i, code in enumerate(codes)}
         digits = [get_digit_from_string(letter_by_code, string) for string in entry[-4:]]
         return int(''.join((digits)))
-
-    def solve_part_1(self):
-        return sum(1 for string in self.outputs if len(string) in [2, 3, 4, 7])
-
-    def solve_part_2(self):
-        return sum(self._get_output_value(entry) for entry in self.entries)
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
