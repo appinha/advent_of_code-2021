@@ -1,34 +1,32 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import X, Y, Coordinates2D
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
+from helpers import X, Y, Coordinates2D
 import re
 
 
-delimiter = "\n\n"
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = "\n\n"
 
+    def solve_part_1(self, raw_input):
+        instructions, dot_coordinates = self._get_input(raw_input)
+        return len(self._follow_instruction(instructions[0], dot_coordinates))
 
-class FoldingInstruction():
-    def __init__(self, axis, value):
-        self.axis = axis
-        self.value = value
+    def solve_part_2(self, raw_input):
+        instructions, dot_coordinates = self._get_input(raw_input)
+        final_dot_coordinates = self._follow_instructions(instructions, dot_coordinates)
+        self._print_grid(final_dot_coordinates)
+        return "HGAJBEHC"
 
-    def __repr__(self):
-        return self.__str__()
+    def _get_input(self, raw_input):
+        def transform_input(raw_input, transform):
+            return [transform(line) for line in raw_input.split("\n")]
 
-    def __str__(self):
-        return f"{self.axis}={self.value}"
-
-
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
-
-    def get_input(self, raw_input):
-        self.dot_coordinates = self._get_input(raw_input[0], Coordinates2D.get_tuple_from_string)
-        self.instructions = self._get_input(raw_input[1], self._get_instruction)
-
-    def _get_input(self, raw_input, transform):
-        return [transform(line) for line in raw_input.split("\n")]
+        dot_coordinates = transform_input(raw_input[0], Coordinates2D.get_tuple_from_string)
+        instructions = transform_input(raw_input[1], self._get_instruction)
+        return instructions, dot_coordinates
 
     def _get_instruction(self, string):
         split = re.search(r'fold along ([a-z])=(\d+)', string)
@@ -58,14 +56,14 @@ class DayPuzzleSolver(PuzzleSolver):
         for y in range(max_y + 1):
             print(*[' #'[(x, y) in dot_coordinates] for x in range(max_x + 1)])
 
-    def solve_part_1(self):
-        return len(self._follow_instruction(self.instructions[0], self.dot_coordinates))
 
-    def solve_part_2(self):
-        final_dot_coordinates = self._follow_instructions(self.instructions, self.dot_coordinates)
-        self._print_grid(final_dot_coordinates)
-        return len(final_dot_coordinates)
+class FoldingInstruction():
+    def __init__(self, axis, value):
+        self.axis = axis
+        self.value = value
 
+    def __repr__(self):
+        return self.__str__()
 
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
+    def __str__(self):
+        return f"{self.axis}={self.value}"

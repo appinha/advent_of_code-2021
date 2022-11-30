@@ -21,7 +21,7 @@ fold along y=7
 fold along x=5
 :-> solution=17 <-:
 
-*-*-*
+<===>
 
 6,10
 0,14
