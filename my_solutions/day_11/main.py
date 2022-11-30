@@ -1,19 +1,18 @@
-from puzzle_solver import PuzzleSolver, run_puzzle_solver
-from helpers import Grid
+import sys; sys.path.insert(0, '..')
+import aoc_lib as lib
 from pprint import pprint
+
+from helpers import Grid
 import numpy as np
-
-
-delimiter = ""
 
 
 ROW = 0
 COL = 1
 
 
-class DayPuzzleSolver(PuzzleSolver):
-    def __init__(self, input_file, delimiter):
-        PuzzleSolver.__init__(self, input_file, delimiter)
+class DayPuzzleSolver():
+    def __init__(self):
+        self.delimiter = ""
         self.relative_adjs = [
             (x, y)
             for x in range(-1, 2)
@@ -21,14 +20,21 @@ class DayPuzzleSolver(PuzzleSolver):
             if not (x == 0 and y == 0)
         ]
 
-    def get_input(self, raw_input):
-        self.grid = Grid.get_from_string(raw_input, int, lambda row: list(row))
-        self.grid_size = self.grid.shape
+    def solve_part_1(self, raw_input):
+        grid = self._get_input(raw_input)
+        return self._simulate_for(100, grid)
 
-    def _get_adjacents(self, pos):
+    def solve_part_2(self, raw_input):
+        grid = self._get_input(raw_input)
+        return self._simulate_until_synchronizing(grid)
+
+    def _get_input(self, raw_input):
+        return Grid.get_from_string(raw_input, int, lambda row: list(row))
+
+    def _get_adjacents(self, grid, pos):
 
         def pos_is_in_map(pos):
-            return (0 <= pos[ROW] < self.grid_size[ROW]) and (0 <= pos[COL] < self.grid_size[COL])
+            return (0 <= pos[ROW] < grid.shape[ROW]) and (0 <= pos[COL] < grid.shape[COL])
 
         absolute_adjs = [(adj[ROW] + pos[ROW], adj[COL] + pos[COL]) for adj in self.relative_adjs]
         return [adj for adj in absolute_adjs if pos_is_in_map(adj)]
@@ -40,7 +46,7 @@ class DayPuzzleSolver(PuzzleSolver):
         while indexes:
             for index in indexes:
                 flashed.append(index)
-                for adj in self._get_adjacents(index):
+                for adj in self._get_adjacents(grid, index):
                     if grid[adj[ROW], adj[COL]] != 0:
                         grid[adj[ROW], adj[COL]] += 1
             for row, col in flashed:
@@ -49,30 +55,19 @@ class DayPuzzleSolver(PuzzleSolver):
         flashes += len(Grid.get_index_tuples_where(np.where(grid == 0)))
         return flashes
 
-    def _simulate_for(self, steps):
+    def _simulate_for(self, steps, grid):
         flashes = 0
         while steps:
-            self.grid += 1
-            flashes += self._flash(self.grid)
+            grid += 1
+            flashes += self._flash(grid)
             steps -= 1
         return flashes
 
-    def _simulate_until_synchronizing(self):
+    def _simulate_until_synchronizing(self, grid):
         step = 0
         flashes = 0
-        while flashes < self.grid.size:
-            self.grid += 1
-            flashes = self._flash(self.grid)
+        while flashes < grid.size:
+            grid += 1
+            flashes = self._flash(grid)
             step += 1
         return step
-
-
-    def solve_part_1(self):
-        return self._simulate_for(100)
-
-    def solve_part_2(self):
-        return self._simulate_until_synchronizing()
-
-
-if __name__ == '__main__':
-    run_puzzle_solver(DayPuzzleSolver, delimiter)
