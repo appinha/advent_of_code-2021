@@ -2,7 +2,6 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import invert_binary, lst_to_str
 from collections import defaultdict, Counter
 
 
@@ -28,14 +27,14 @@ class DayPuzzleSolver():
 
     def _get_gamma(self, raw_input):
         count_by_bit_by_position = self._get_bit_counts(raw_input)
-        return lst_to_str([
+        return lib.lst_to_str([
             '01'[count_by_bit['0'] > count_by_bit['1']]
             for count_by_bit in count_by_bit_by_position.values()
         ])
 
     def _get_gamma_and_epsilon(self, raw_input):
         gamma = self._get_gamma(raw_input)
-        epsilon = invert_binary(gamma)
+        epsilon = lib.invert_binary(gamma)
         return gamma, epsilon
 
     def _get_rating(self, binaries, gas):
