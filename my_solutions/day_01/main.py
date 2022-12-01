@@ -2,8 +2,6 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import get_subsets_in_sequence
-
 
 class DayPuzzleSolver():
     def __init__(self):
@@ -25,5 +23,5 @@ class DayPuzzleSolver():
 
     def solve_part_2(self, raw_input):
         numbers = self._get_numbers(raw_input)
-        sums = [sum(subset) for subset in get_subsets_in_sequence(numbers, 3)]
+        sums = [sum(subset) for subset in lib.list_sequenced_subsets(numbers, 3)]
         return self._count_increases(sums)
