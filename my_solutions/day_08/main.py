@@ -2,7 +2,6 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import flatten_list
 import re
 from collections import defaultdict
 
@@ -37,7 +36,7 @@ class DayPuzzleSolver():
         return re.findall(r'[a-z]+', raw_input_line)
 
     def _get_outputs(self, raw_input):
-        return flatten_list([self._get_strings(line)[-4:] for line in raw_input])
+        return lib.flatten_list([self._get_strings(line)[-4:] for line in raw_input])
 
     def _get_entries(self, raw_input):
         return [self._get_strings(line) for line in raw_input]

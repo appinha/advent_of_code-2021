@@ -2,7 +2,7 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import X, Y
+from aoc_lib import X, Y
 from collections import defaultdict
 import numpy as np
 
@@ -24,7 +24,7 @@ class DayPuzzleSolver():
     def solve_part_2(self, raw_input):
         self._get_input(raw_input)
         basin_sizes = sorted(self._get_basin_sizes())
-        return np.prod(basin_sizes[-3:])
+        return lib.prod(basin_sizes[-3:])
 
     def _get_input(self, raw_input):
         self.map_size = (len(raw_input[0]), len(raw_input))

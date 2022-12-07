@@ -2,7 +2,6 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import get_subsets_in_sequence, lst_to_str, flatten_list
 from collections import Counter
 
 
@@ -26,16 +25,16 @@ class DayPuzzleSolver():
     def _apply_pair_insertion_for(self, steps, polymer, insertion_by_pair):
         for _ in range(steps):
             new_polymer = [polymer[0]]
-            for subset in get_subsets_in_sequence(polymer, 2):
-                new_polymer.append([insertion_by_pair[lst_to_str(subset)], subset[1]])
-            polymer = flatten_list(new_polymer)
+            for subset in lib.list_sequenced_subsets(polymer, 2):
+                new_polymer.append([insertion_by_pair[lib.lst_to_str(subset)], subset[1]])
+            polymer = lib.flatten_list(new_polymer)
 
         counts = Counter(polymer)
         return counts.most_common()[0][1] - counts.most_common()[-1][1]
 
     def _opt_apply_pair_insertion_for(self, steps, polymer, insertion_by_pair):
         counts = Counter(polymer)
-        pair_counts = Counter(map(lst_to_str, get_subsets_in_sequence(polymer, 2)))
+        pair_counts = Counter(map(lib.lst_to_str, lib.list_sequenced_subsets(polymer, 2)))
 
         for _ in range(steps):
             new_pair_counts = Counter()

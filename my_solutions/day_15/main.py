@@ -2,7 +2,7 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import X, Y, Grid, sum_tuple_values, get_key_with_min_value
+from aoc_lib import X, Y, NumpyGrid, HashGrid
 import heapq
 
 
@@ -21,23 +21,23 @@ class DayPuzzleSolver():
         return self._opt_find_lowest_total_risk(full_risk_map)
 
     def _get_input(self, raw_input):
-        return Grid.get_hashmap_from_string(raw_input, int, lambda row: list(row))
+        return HashGrid.from_string(raw_input, int, lambda row: list(row))
 
     def _get_neighbours(self, coord, shape):
-        neighbours = [sum_tuple_values(coord, rel_n) for rel_n in self.rel_neighbours]
-        return [n for n in neighbours if Grid.has_position(n, shape)]
+        neighbours = [lib.cross_sum(coord, rel_n) for rel_n in self.rel_neighbours]
+        return [n for n in neighbours if NumpyGrid.has_position(n, shape)]
 
     def _find_lowest_total_risk(self, risk_map):
         '''Implementation of Dijkstra's shortest path algorithm as explained in:
         https://youtu.be/pVfj6mxhdMw'''
-        shape = Grid.get_hashmap_shape(risk_map)
+        shape = HashGrid.shape(risk_map)
         unvisited = list(risk_map.keys())
         lowest_risk_by_coord = {coord: float('inf') for coord in unvisited}
         lowest_risk_by_coord[(0, 0)] = 0
         previous_by_coord = {}
 
         while unvisited:
-            current = get_key_with_min_value(lowest_risk_by_coord)
+            current = lib.get_min_value_key(lowest_risk_by_coord)
             unvisited.remove(current)
             for n in self._get_neighbours(current, shape):
                 if n not in lowest_risk_by_coord: # means n was already visited
@@ -57,7 +57,7 @@ class DayPuzzleSolver():
         return sum(reversed_path)
 
     def _opt_find_lowest_total_risk(self, risk_map):
-        shape = Grid.get_hashmap_shape(risk_map)
+        shape = HashGrid.shape(risk_map)
         visited = set()
         risk_by_coord = {(0, 0): 0}
 
@@ -77,7 +77,7 @@ class DayPuzzleSolver():
         return risk_by_coord[destiny]
 
     def _get_full_map(self, tile_map, qty):
-        shape = Grid.get_hashmap_shape(tile_map)
+        shape = HashGrid.shape(tile_map)
 
         def get_new_value(new_coord, full_map):
             x = new_coord[X] if new_coord[X] < shape[X] else new_coord[X] - shape[X]

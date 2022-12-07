@@ -2,7 +2,7 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import X, Y, Coordinates2D
+from aoc_lib import X, Y, Coord2D
 import re
 
 
@@ -24,7 +24,7 @@ class DayPuzzleSolver():
         def transform_input(raw_input, transform):
             return [transform(line) for line in raw_input.split("\n")]
 
-        dot_coordinates = transform_input(raw_input[0], Coordinates2D.get_tuple_from_string)
+        dot_coordinates = transform_input(raw_input[0], Coord2D.get)
         instructions = transform_input(raw_input[1], self._get_instruction)
         return instructions, dot_coordinates
 
@@ -52,7 +52,7 @@ class DayPuzzleSolver():
         return dot_coordinates
 
     def _print_grid(self, dot_coordinates):
-        max_x, max_y = Coordinates2D.get_max_from_tuples(dot_coordinates)
+        max_x, max_y = Coord2D.max(dot_coordinates)
         for y in range(max_y + 1):
             print(*[' #'[(x, y) in dot_coordinates] for x in range(max_x + 1)])
 

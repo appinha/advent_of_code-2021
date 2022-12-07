@@ -2,7 +2,6 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import Grid
 import numpy as np
 
 
@@ -23,7 +22,7 @@ class DayPuzzleSolver():
 
     def _get_input(self, raw_input):
         numbers = list(map(int, raw_input[0].split(',')))
-        boards = [Grid.get_from_string(board, int) for board in raw_input[1:]]
+        boards = [lib.NumpyGrid.from_string(board, int) for board in raw_input[1:]]
         return numbers, boards
 
     def _mark_number_on_board(self, number, board, marked_board):
@@ -32,12 +31,12 @@ class DayPuzzleSolver():
         board[board == number] = -1
 
     def _board_has_full_array(self, board):
-        full_rows = np.all(board >= 0, axis=Grid.row_axis)
-        full_columns = np.all(board >= 0, axis=Grid.col_axis)
+        full_rows = np.all(board >= 0, axis=lib.ROW)
+        full_columns = np.all(board >= 0, axis=lib.COL)
         return any(full_rows) or any(full_columns)
 
     def _play_bingo(self, numbers, boards, get_all=False):
-        marked_boards = [Grid.create_filled_with(boards[0].shape, -1) for _ in range(len(boards))]
+        marked_boards = [lib.NumpyGrid.generate(boards[0].shape, -1) for _ in range(len(boards))]
         winning_board_indexes = []
         all_winning = []
         for number in numbers:
@@ -61,4 +60,4 @@ class DayPuzzleSolver():
 
     def _sum_unmarked_numbers(self, board):
         board[board == -1] = 0
-        return Grid.sum(board)
+        return lib.NumpyGrid.sum(board)

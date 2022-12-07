@@ -2,12 +2,8 @@ import sys; sys.path.insert(0, '..')
 import aoc_lib as lib
 from pprint import pprint
 
-from helpers import Grid
+from aoc_lib import NumpyGrid, ROW, COL
 import numpy as np
-
-
-ROW = 0
-COL = 1
 
 
 class DayPuzzleSolver():
@@ -29,7 +25,7 @@ class DayPuzzleSolver():
         return self._simulate_until_synchronizing(grid)
 
     def _get_input(self, raw_input):
-        return Grid.get_from_string(raw_input, int, lambda row: list(row))
+        return NumpyGrid.from_string(raw_input, int, lambda row: list(row))
 
     def _get_adjacents(self, grid, pos):
 
@@ -42,7 +38,7 @@ class DayPuzzleSolver():
     def _flash(self, grid):
         flashes = 0
         flashed = []
-        indexes = Grid.get_index_tuples_where(np.where(grid > 9))
+        indexes = NumpyGrid.list_index_tuples_where(np.where(grid > 9))
         while indexes:
             for index in indexes:
                 flashed.append(index)
@@ -51,8 +47,8 @@ class DayPuzzleSolver():
                         grid[adj[ROW], adj[COL]] += 1
             for row, col in flashed:
                 grid[row, col] = 0
-            indexes = Grid.get_index_tuples_where(np.where(grid > 9))
-        flashes += len(Grid.get_index_tuples_where(np.where(grid == 0)))
+            indexes = NumpyGrid.list_index_tuples_where(np.where(grid > 9))
+        flashes += len(NumpyGrid.list_index_tuples_where(np.where(grid == 0)))
         return flashes
 
     def _simulate_for(self, steps, grid):
